@@ -17,6 +17,7 @@ pbgi/bvhworkers/.slangtorch_cache/*
 .tmp/
 %SystemDrive%/
 vendor/site-packages/
+external/
 *.pyd
 *.obj
 *.lib
