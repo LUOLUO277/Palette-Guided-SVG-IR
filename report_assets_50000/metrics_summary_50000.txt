@@ -1,0 +1,21 @@
+SVG-IR 50000 Comparison Summary
+
+| Metric | Baseline | Palette | Delta (Palette-Baseline) |
+|---|---:|---:|---:|
+| Albedo PSNR | 17.476633 | 19.899592 | 2.422959 |
+| Albedo SSIM | 0.663945 | 0.687427 | 0.023481 |
+| Albedo LPIPS | 0.202522 | 0.195347 | -0.007174 |
+| Roughness MSE | N/A | N/A | N/A |
+| PSNR_PBR | 42.392173 | 38.621591 | -3.770582 |
+| NVS PSNR | 26.638121 | 25.969273 | -0.668847 |
+| NVS SSIM | 0.800922 | 0.791592 | -0.009331 |
+| NVS LPIPS | 0.095761 | 0.100558 | 0.004797 |
+| num_evaluated | 200 | 200 | 0 |
+
+Albedo PSNR is averaged over 200 test views of the armadillo scene.
+Predicted albedo comes from test/ours_50000/base_color.
+GT albedo comes from dataset/TensoIR/armadillo/test_xxx/albedo.png.
+Mask comes from dataset/TensoIR/armadillo/test_xxx/rgba.png alpha.
+Background pixels are excluded from the masked albedo metrics.
+Baseline and palette use the same eval_albedo.py evaluator and the same 200 test views.
+This protocol matches PSNR_PBR resolution logic: GT albedo and GT mask are downsampled to the predicted base_color resolution (50x50 here) before masked comparison.

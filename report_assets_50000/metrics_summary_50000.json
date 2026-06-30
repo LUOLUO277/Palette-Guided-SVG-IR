@@ -1,0 +1,68 @@
+{
+  "metrics": [
+    {
+      "metric": "Albedo PSNR",
+      "baseline": 17.47663261413574,
+      "palette": 19.89959195137024,
+      "delta_palette_minus_baseline": 2.4229593372344986
+    },
+    {
+      "metric": "Albedo SSIM",
+      "baseline": 0.6639454731345177,
+      "palette": 0.6874268889427185,
+      "delta_palette_minus_baseline": 0.023481415808200845
+    },
+    {
+      "metric": "Albedo LPIPS",
+      "baseline": 0.20252173341810703,
+      "palette": 0.19534729786217211,
+      "delta_palette_minus_baseline": -0.007174435555934916
+    },
+    {
+      "metric": "Roughness MSE",
+      "baseline": null,
+      "palette": null,
+      "delta_palette_minus_baseline": null
+    },
+    {
+      "metric": "PSNR_PBR",
+      "baseline": 42.39217342376709,
+      "palette": 38.62159107208252,
+      "delta_palette_minus_baseline": -3.770582351684567
+    },
+    {
+      "metric": "NVS PSNR",
+      "baseline": 26.638120546340943,
+      "palette": 25.96927315711975,
+      "delta_palette_minus_baseline": -0.6688473892211917
+    },
+    {
+      "metric": "NVS SSIM",
+      "baseline": 0.8009222376346589,
+      "palette": 0.7915916708111763,
+      "delta_palette_minus_baseline": -0.009330566823482545
+    },
+    {
+      "metric": "NVS LPIPS",
+      "baseline": 0.09576102368533612,
+      "palette": 0.10055813252925873,
+      "delta_palette_minus_baseline": 0.004797108843922607
+    },
+    {
+      "metric": "num_evaluated",
+      "baseline": 200,
+      "palette": 200,
+      "delta_palette_minus_baseline": 0
+    }
+  ],
+  "protocol": [
+    "Albedo PSNR is averaged over 200 test views of the armadillo scene.",
+    "Predicted albedo comes from test/ours_50000/base_color.",
+    "GT albedo comes from dataset/TensoIR/armadillo/test_xxx/albedo.png.",
+    "Mask comes from dataset/TensoIR/armadillo/test_xxx/rgba.png alpha.",
+    "Background pixels are excluded from the masked albedo metrics.",
+    "Baseline and palette use the same eval_albedo.py evaluator and the same 200 test views.",
+    "This protocol matches PSNR_PBR resolution logic: GT albedo and GT mask are downsampled to the predicted base_color resolution (50x50 here) before masked comparison."
+  ],
+  "target_resolution": "pred"
+}

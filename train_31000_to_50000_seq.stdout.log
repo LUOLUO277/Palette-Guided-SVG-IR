@@ -1,0 +1,525 @@
+Current model path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000
+Current rendering type:  render_relight
+Optimizing D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000
+Output folder: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000
+Found transforms_train.json file, assuming Blender data set!
+Reading Training Transforms
+Reading Test Transforms
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Create Gaussians from checkpoint D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i31000\chkpnt31000.pth
+[Checkpoint] Warning: optimizer state was not restored because param groups differ (15 vs 13). Training will continue with a fresh optimizer state.
+build bvh cost time = 0.16449594497680664
+index table cost time = 0.6702384948730469
+index table cost time = 0.3559412956237793
+index table cost time = 0.3836033344268799
+Using global incident light for regularization.
+Trying to load global incident light from  D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i31000/env_light_chkpnt31000.pth
+Not loading optimizer state_dict!
+Successfully loaded!
+
+[ITER 32000] Evaluating test: L1 0.000996891466784291 PSNR 48.52998971939087 PSNR_PBR 43.27825172424316
+
+[ITER 32000] Evaluating train: L1 0.0006918185058748349 PSNR 51.33467380523682 PSNR_PBR 46.24285400390625
+
+[ITER 32000] Saving Gaussians
+[ITER 32000] Saving sample_num Checkpoint
+
+[ITER 32000] Saving Checkpoint
+[ITER 32000] Saving env_light Checkpoint
+[ITER 32000] Saving iteration Checkpoint
+[ITER 32000] Saving palette_max_iterations Checkpoint
+
+[ITER 33000] Evaluating test: L1 0.0009740318250260316 PSNR 48.6977908706665 PSNR_PBR 43.100801105499265
+
+[ITER 33000] Evaluating train: L1 0.0006677565933205187 PSNR 51.592943534851074 PSNR_PBR 47.43978031158447
+
+[ITER 33000] Saving Gaussians
+[ITER 33000] Saving sample_num Checkpoint
+
+[ITER 33000] Saving Checkpoint
+[ITER 33000] Saving env_light Checkpoint
+[ITER 33000] Saving iteration Checkpoint
+[ITER 33000] Saving palette_max_iterations Checkpoint
+
+[ITER 34000] Evaluating test: L1 0.0009598007690510713 PSNR 48.80489500045776 PSNR_PBR 42.80686016082764
+
+[ITER 34000] Evaluating train: L1 0.0006514611252350733 PSNR 51.76540000915527 PSNR_PBR 47.98629173278809
+
+[ITER 34000] Saving Gaussians
+[ITER 34000] Saving sample_num Checkpoint
+
+[ITER 34000] Saving Checkpoint
+[ITER 34000] Saving env_light Checkpoint
+[ITER 34000] Saving iteration Checkpoint
+[ITER 34000] Saving palette_max_iterations Checkpoint
+
+[ITER 35000] Evaluating test: L1 0.0009486441675107927 PSNR 48.887026977539065 PSNR_PBR 42.6840115737915
+
+[ITER 35000] Evaluating train: L1 0.0006392186234006658 PSNR 51.90053157806397 PSNR_PBR 48.3266869354248
+
+[ITER 35000] Saving Gaussians
+[ITER 35000] Saving sample_num Checkpoint
+
+[ITER 35000] Saving Checkpoint
+[ITER 35000] Saving env_light Checkpoint
+[ITER 35000] Saving iteration Checkpoint
+[ITER 35000] Saving palette_max_iterations Checkpoint
+
+[ITER 36000] Evaluating test: L1 0.0009409399851574563 PSNR 48.94336349487305 PSNR_PBR 42.54146001815796
+
+[ITER 36000] Evaluating train: L1 0.0006299248716095463 PSNR 52.00145721435547 PSNR_PBR 48.53451728820801
+
+[ITER 36000] Saving Gaussians
+[ITER 36000] Saving sample_num Checkpoint
+
+[ITER 36000] Saving Checkpoint
+[ITER 36000] Saving env_light Checkpoint
+[ITER 36000] Saving iteration Checkpoint
+[ITER 36000] Saving palette_max_iterations Checkpoint
+
+[ITER 37000] Evaluating test: L1 0.0009345565672265366 PSNR 48.992229557037355 PSNR_PBR 42.44831924438477
+
+[ITER 37000] Evaluating train: L1 0.0006224795489106328 PSNR 52.080700912475585 PSNR_PBR 48.71076992034912
+
+[ITER 37000] Saving Gaussians
+[ITER 37000] Saving sample_num Checkpoint
+
+[ITER 37000] Saving Checkpoint
+[ITER 37000] Saving env_light Checkpoint
+[ITER 37000] Saving iteration Checkpoint
+[ITER 37000] Saving palette_max_iterations Checkpoint
+
+[ITER 38000] Evaluating test: L1 0.0009295538457809016 PSNR 49.029508686065675 PSNR_PBR 42.42123950958252
+
+[ITER 38000] Evaluating train: L1 0.0006161294417688624 PSNR 52.148709297180176 PSNR_PBR 48.804817047119144
+
+[ITER 38000] Saving Gaussians
+[ITER 38000] Saving sample_num Checkpoint
+
+[ITER 38000] Saving Checkpoint
+[ITER 38000] Saving env_light Checkpoint
+[ITER 38000] Saving iteration Checkpoint
+[ITER 38000] Saving palette_max_iterations Checkpoint
+
+[ITER 39000] Evaluating test: L1 0.000924980280105956 PSNR 49.06168893814087 PSNR_PBR 42.410643577575684
+
+[ITER 39000] Evaluating train: L1 0.0006107162329135463 PSNR 52.20455493927002 PSNR_PBR 48.88077220916748
+
+[ITER 39000] Saving Gaussians
+[ITER 39000] Saving sample_num Checkpoint
+
+[ITER 39000] Saving Checkpoint
+[ITER 39000] Saving env_light Checkpoint
+[ITER 39000] Saving iteration Checkpoint
+[ITER 39000] Saving palette_max_iterations Checkpoint
+
+[ITER 40000] Evaluating test: L1 0.0009209617684246041 PSNR 49.09048057556152 PSNR_PBR 42.3756392288208
+
+[ITER 40000] Evaluating train: L1 0.0006060123990755528 PSNR 52.25820491790772 PSNR_PBR 48.9626859664917
+
+[ITER 40000] Saving Gaussians
+[ITER 40000] Saving sample_num Checkpoint
+
+[ITER 40000] Saving Checkpoint
+[ITER 40000] Saving env_light Checkpoint
+[ITER 40000] Saving iteration Checkpoint
+[ITER 40000] Saving palette_max_iterations Checkpoint
+
+[ITER 41000] Evaluating test: L1 0.0009181808441644535 PSNR 49.10940336227417 PSNR_PBR 42.38492700576782
+
+[ITER 41000] Evaluating train: L1 0.000602074122580234 PSNR 52.298470458984376 PSNR_PBR 49.056075477600096
+
+[ITER 41000] Saving Gaussians
+[ITER 41000] Saving sample_num Checkpoint
+
+[ITER 41000] Saving Checkpoint
+[ITER 41000] Saving env_light Checkpoint
+[ITER 41000] Saving iteration Checkpoint
+[ITER 41000] Saving palette_max_iterations Checkpoint
+
+[ITER 42000] Evaluating test: L1 0.0009155781328445301 PSNR 49.13059480667114 PSNR_PBR 42.326471691131594
+
+[ITER 42000] Evaluating train: L1 0.0005985333977150731 PSNR 52.33811103820801 PSNR_PBR 49.02063129425049
+
+[ITER 42000] Saving Gaussians
+[ITER 42000] Saving sample_num Checkpoint
+
+[ITER 42000] Saving Checkpoint
+[ITER 42000] Saving env_light Checkpoint
+[ITER 42000] Saving iteration Checkpoint
+[ITER 42000] Saving palette_max_iterations Checkpoint
+
+[ITER 43000] Evaluating test: L1 0.0009127683279803023 PSNR 49.15250219345093 PSNR_PBR 42.401399250030515
+
+[ITER 43000] Evaluating train: L1 0.0005949600454187021 PSNR 52.37499755859375 PSNR_PBR 49.134874534606936
+
+[ITER 43000] Saving Gaussians
+[ITER 43000] Saving sample_num Checkpoint
+
+[ITER 43000] Saving Checkpoint
+[ITER 43000] Saving env_light Checkpoint
+[ITER 43000] Saving iteration Checkpoint
+[ITER 43000] Saving palette_max_iterations Checkpoint
+
+[ITER 44000] Evaluating test: L1 0.0009106538930791431 PSNR 49.16570987701416 PSNR_PBR 42.389284954071044
+
+[ITER 44000] Evaluating train: L1 0.0005917413192219101 PSNR 52.409975090026855 PSNR_PBR 49.113704185485844
+
+[ITER 44000] Saving Gaussians
+[ITER 44000] Saving sample_num Checkpoint
+
+[ITER 44000] Saving Checkpoint
+[ITER 44000] Saving env_light Checkpoint
+[ITER 44000] Saving iteration Checkpoint
+[ITER 44000] Saving palette_max_iterations Checkpoint
+
+[ITER 45000] Evaluating test: L1 0.0009086690252297558 PSNR 49.18191680908203 PSNR_PBR 42.371750583648684
+
+[ITER 45000] Evaluating train: L1 0.0005890401062788442 PSNR 52.44017272949219 PSNR_PBR 49.18526626586914
+
+[ITER 45000] Saving Gaussians
+[ITER 45000] Saving sample_num Checkpoint
+
+[ITER 45000] Saving Checkpoint
+[ITER 45000] Saving env_light Checkpoint
+[ITER 45000] Saving iteration Checkpoint
+[ITER 45000] Saving palette_max_iterations Checkpoint
+
+[ITER 46000] Evaluating test: L1 0.0009062278308556416 PSNR 49.19554611206055 PSNR_PBR 42.30580877304077
+
+[ITER 46000] Evaluating train: L1 0.0005863627302460372 PSNR 52.466382598876955 PSNR_PBR 49.142429962158204
+
+[ITER 46000] Saving Gaussians
+[ITER 46000] Saving sample_num Checkpoint
+
+[ITER 46000] Saving Checkpoint
+[ITER 46000] Saving env_light Checkpoint
+[ITER 46000] Saving iteration Checkpoint
+[ITER 46000] Saving palette_max_iterations Checkpoint
+
+[ITER 47000] Evaluating test: L1 0.000904875353735406 PSNR 49.208327560424806 PSNR_PBR 42.38039939880371
+
+[ITER 47000] Evaluating train: L1 0.0005838460841914639 PSNR 52.495225982666014 PSNR_PBR 49.115799522399904
+
+[ITER 47000] Saving Gaussians
+[ITER 47000] Saving sample_num Checkpoint
+
+[ITER 47000] Saving Checkpoint
+[ITER 47000] Saving env_light Checkpoint
+[ITER 47000] Saving iteration Checkpoint
+[ITER 47000] Saving palette_max_iterations Checkpoint
+
+[ITER 48000] Evaluating test: L1 0.000903080879652407 PSNR 49.21984205245972 PSNR_PBR 42.39049070358276
+
+[ITER 48000] Evaluating train: L1 0.0005816457173204981 PSNR 52.51900165557861 PSNR_PBR 49.24865673065186
+
+[ITER 48000] Saving Gaussians
+[ITER 48000] Saving sample_num Checkpoint
+
+[ITER 48000] Saving Checkpoint
+[ITER 48000] Saving env_light Checkpoint
+[ITER 48000] Saving iteration Checkpoint
+[ITER 48000] Saving palette_max_iterations Checkpoint
+
+[ITER 49000] Evaluating test: L1 0.0009018876659683884 PSNR 49.2290364074707 PSNR_PBR 42.39561573028565
+
+[ITER 49000] Evaluating train: L1 0.0005795237768325024 PSNR 52.54164798736572 PSNR_PBR 49.27412750244141
+
+[ITER 49000] Saving Gaussians
+[ITER 49000] Saving sample_num Checkpoint
+
+[ITER 49000] Saving Checkpoint
+[ITER 49000] Saving env_light Checkpoint
+[ITER 49000] Saving iteration Checkpoint
+[ITER 49000] Saving palette_max_iterations Checkpoint
+
+[ITER 50000] Evaluating test: L1 0.0009010728506837041 PSNR 49.23431371688843 PSNR_PBR 42.39217342376709
+
+[ITER 50000] Evaluating train: L1 0.0005776313421665691 PSNR 52.56270832061767 PSNR_PBR 49.3353524017334
+
+[ITER 50000] Saving Gaussians
+[ITER 50000] Saving sample_num Checkpoint
+
+[ITER 50000] Saving Checkpoint
+[ITER 50000] Saving env_light Checkpoint
+[ITER 50000] Saving iteration Checkpoint
+[ITER 50000] Saving palette_max_iterations Checkpoint
+
+Training complete.
+Current model path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000
+Current rendering type:  render_relight
+Optimizing D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000
+Output folder: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000
+Found transforms_train.json file, assuming Blender data set!
+Reading Training Transforms
+Reading Test Transforms
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Create Gaussians from checkpoint D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i31000\chkpnt31000.pth
+[Checkpoint] Warning: optimizer state was not restored because param groups differ (23 vs 21). Training will continue with a fresh optimizer state.
+[PaletteDebug] state begin
+[PaletteDebug] use_pbr: True
+[PaletteDebug] use_palette_material: True
+[PaletteDebug] _xyz.shape: (32010, 3)
+[PaletteDebug] _base_color.shape: (32010, 12)
+[PaletteDebug] _roughness.shape: (32010, 4)
+[PaletteDebug] get_base_color.shape: (32010, 12)
+[PaletteDebug] get_roughness.shape: (32010, 4)
+[PaletteDebug] _palette_albedo_raw.shape: (8, 3)
+[PaletteDebug] _palette_roughness_raw.shape: (8, 1)
+[PaletteDebug] optimizer_param_groups: [{'name': 'xyz', 'shape': (32010, 3)}, {'name': 'normal', 'shape': (32010, 12)}, {'name': 'rotation', 'shape': (32010, 4)}, {'name': 'scaling', 'shape': (32010, 3)}, {'name': 'opacity', 'shape': (32010, 1)}, {'name': 'f_dc', 'shape': (32010, 1, 3)}, {'name': 'f_rest', 'shape': (32010, 15, 3)}, {'name': 'base_color', 'shape': (32010, 12)}, {'name': 'roughness', 'shape': (32010, 4)}, {'name': 'incidents_dc', 'shape': (32010, 1, 3)}, {'name': 'incidents_rest', 'shape': (32010, 15, 3)}, {'name': 'visibility_dc', 'shape': (32010, 1, 1)}, {'name': 'visibility_rest', 'shape': (32010, 15, 1)}, {'name': 'palette_albedo', 'shape': (8, 3)}, {'name': 'palette_roughness', 'shape': (8, 1)}, {'name': 'palette_mlp_0.weight', 'shape': (64, 27)}, {'name': 'palette_mlp_0.bias', 'shape': (64,)}, {'name': 'palette_mlp_2.weight', 'shape': (64, 64)}, {'name': 'palette_mlp_2.bias', 'shape': (64,)}, {'name': 'palette_mlp_4.weight', 'shape': (8, 64)}, {'name': 'palette_mlp_4.bias', 'shape': (8,)}]
+[PaletteDebug] palette_regularization_loss: {'loss_palette_res': 0.0005641839816235006, 'loss_palette_usage': -2.0736379623413086, 'loss_palette_dead': 0.0}
+[PaletteDebug] state end
+build bvh cost time = 0.2768995761871338
+index table cost time = 0.6791515350341797
+index table cost time = 0.36707425117492676
+index table cost time = 0.39588165283203125
+Using global incident light for regularization.
+Trying to load global incident light from  D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i31000/env_light_chkpnt31000.pth
+Not loading optimizer state_dict!
+Successfully loaded!
+[PaletteGradCheck]
+[PaletteGradCheck] _base_color grad_norm = 0.00011466907744761556
+[PaletteGradCheck] _roughness grad_norm = 1.4840304174867924e-05
+[PaletteGradCheck] _palette_albedo_raw grad_norm = 0.0029547722078859806
+[PaletteGradCheck] _palette_roughness_raw grad_norm = 7.67947276472114e-05
+[PaletteGradCheck] palette_mlp grad_norm_sum = 0.0025168284118990414
+
+[ITER 32000] Evaluating test: L1 0.0010797151384758764 PSNR 47.93347930908203 PSNR_PBR 41.24878433227539
+
+[ITER 32000] Evaluating train: L1 0.0007836529245832935 PSNR 50.314431495666504 PSNR_PBR 43.054592285156254
+
+[ITER 32000] Saving Gaussians
+[ITER 32000] Saving sample_num Checkpoint
+
+[ITER 32000] Saving Checkpoint
+[ITER 32000] Saving env_light Checkpoint
+[ITER 32000] Saving iteration Checkpoint
+[ITER 32000] Saving palette_max_iterations Checkpoint
+
+[ITER 33000] Evaluating test: L1 0.0010495692759286612 PSNR 48.140429916381834 PSNR_PBR 40.85737234115601
+
+[ITER 33000] Evaluating train: L1 0.000752060524537228 PSNR 50.61303943634033 PSNR_PBR 44.135677604675294
+
+[ITER 33000] Saving Gaussians
+[ITER 33000] Saving sample_num Checkpoint
+
+[ITER 33000] Saving Checkpoint
+[ITER 33000] Saving env_light Checkpoint
+[ITER 33000] Saving iteration Checkpoint
+[ITER 33000] Saving palette_max_iterations Checkpoint
+
+[ITER 34000] Evaluating test: L1 0.0010307587424176745 PSNR 48.27251304626465 PSNR_PBR 40.61658926010132
+
+[ITER 34000] Evaluating train: L1 0.0007312800356885418 PSNR 50.807237701416014 PSNR_PBR 44.75726905822754
+
+[ITER 34000] Saving Gaussians
+[ITER 34000] Saving sample_num Checkpoint
+
+[ITER 34000] Saving Checkpoint
+[ITER 34000] Saving env_light Checkpoint
+[ITER 34000] Saving iteration Checkpoint
+[ITER 34000] Saving palette_max_iterations Checkpoint
+
+[ITER 35000] Evaluating test: L1 0.0010161040179082193 PSNR 48.38114023208618 PSNR_PBR 40.4857123374939
+
+[ITER 35000] Evaluating train: L1 0.0007158321078168229 PSNR 50.95651344299316 PSNR_PBR 45.24782009124756
+
+[ITER 35000] Saving Gaussians
+[ITER 35000] Saving sample_num Checkpoint
+
+[ITER 35000] Saving Checkpoint
+[ITER 35000] Saving env_light Checkpoint
+[ITER 35000] Saving iteration Checkpoint
+[ITER 35000] Saving palette_max_iterations Checkpoint
+
+[ITER 36000] Evaluating test: L1 0.0010051924581057391 PSNR 48.45967952728272 PSNR_PBR 40.14330266952515
+
+[ITER 36000] Evaluating train: L1 0.000703793684951961 PSNR 51.074696159362794 PSNR_PBR 45.572953910827636
+
+[ITER 36000] Saving Gaussians
+[ITER 36000] Saving sample_num Checkpoint
+
+[ITER 36000] Saving Checkpoint
+[ITER 36000] Saving env_light Checkpoint
+[ITER 36000] Saving iteration Checkpoint
+[ITER 36000] Saving palette_max_iterations Checkpoint
+
+[ITER 37000] Evaluating test: L1 0.000996743732248433 PSNR 48.52734516143799 PSNR_PBR 39.87607509613037
+
+[ITER 37000] Evaluating train: L1 0.0006941593805095181 PSNR 51.17076305389404 PSNR_PBR 46.06125839233398
+
+[ITER 37000] Saving Gaussians
+[ITER 37000] Saving sample_num Checkpoint
+
+[ITER 37000] Saving Checkpoint
+[ITER 37000] Saving env_light Checkpoint
+[ITER 37000] Saving iteration Checkpoint
+[ITER 37000] Saving palette_max_iterations Checkpoint
+
+[ITER 38000] Evaluating test: L1 0.0009904347721021623 PSNR 48.573637104034425 PSNR_PBR 39.47711448669434
+
+[ITER 38000] Evaluating train: L1 0.0006860508793033659 PSNR 51.25015727996826 PSNR_PBR 46.35452281951904
+
+[ITER 38000] Saving Gaussians
+[ITER 38000] Saving sample_num Checkpoint
+
+[ITER 38000] Saving Checkpoint
+[ITER 38000] Saving env_light Checkpoint
+[ITER 38000] Saving iteration Checkpoint
+[ITER 38000] Saving palette_max_iterations Checkpoint
+
+[ITER 39000] Evaluating test: L1 0.0009847140248166397 PSNR 48.61636646270752 PSNR_PBR 39.31412750244141
+
+[ITER 39000] Evaluating train: L1 0.0006792679382488132 PSNR 51.31289737701416 PSNR_PBR 46.605713081359866
+
+[ITER 39000] Saving Gaussians
+[ITER 39000] Saving sample_num Checkpoint
+
+[ITER 39000] Saving Checkpoint
+[ITER 39000] Saving env_light Checkpoint
+[ITER 39000] Saving iteration Checkpoint
+[ITER 39000] Saving palette_max_iterations Checkpoint
+
+[ITER 40000] Evaluating test: L1 0.0009795621922239661 PSNR 48.65463785171509 PSNR_PBR 39.07833505630493
+
+[ITER 40000] Evaluating train: L1 0.0006731362815480679 PSNR 51.37719890594482 PSNR_PBR 46.797108306884766
+
+[ITER 40000] Saving Gaussians
+[ITER 40000] Saving sample_num Checkpoint
+
+[ITER 40000] Saving Checkpoint
+[ITER 40000] Saving env_light Checkpoint
+[ITER 40000] Saving iteration Checkpoint
+[ITER 40000] Saving palette_max_iterations Checkpoint
+
+[ITER 41000] Evaluating test: L1 0.0009748481019050814 PSNR 48.69158746719361 PSNR_PBR 38.90665609359741
+
+[ITER 41000] Evaluating train: L1 0.0006672890787012875 PSNR 51.439966430664064 PSNR_PBR 46.936795234680176
+
+[ITER 41000] Saving Gaussians
+[ITER 41000] Saving sample_num Checkpoint
+
+[ITER 41000] Saving Checkpoint
+[ITER 41000] Saving env_light Checkpoint
+[ITER 41000] Saving iteration Checkpoint
+[ITER 41000] Saving palette_max_iterations Checkpoint
+
+[ITER 42000] Evaluating test: L1 0.0009714739437913522 PSNR 48.72165563583374 PSNR_PBR 38.72325799942017
+
+[ITER 42000] Evaluating train: L1 0.0006624975032173097 PSNR 51.490182647705076 PSNR_PBR 46.99917827606201
+
+[ITER 42000] Saving Gaussians
+[ITER 42000] Saving sample_num Checkpoint
+
+[ITER 42000] Saving Checkpoint
+[ITER 42000] Saving env_light Checkpoint
+[ITER 42000] Saving iteration Checkpoint
+[ITER 42000] Saving palette_max_iterations Checkpoint
+
+[ITER 43000] Evaluating test: L1 0.0009679171032621525 PSNR 48.75061714172364 PSNR_PBR 38.61549575805664
+
+[ITER 43000] Evaluating train: L1 0.0006576986378058791 PSNR 51.539642066955565 PSNR_PBR 47.20527500152588
+
+[ITER 43000] Saving Gaussians
+[ITER 43000] Saving sample_num Checkpoint
+
+[ITER 43000] Saving Checkpoint
+[ITER 43000] Saving env_light Checkpoint
+[ITER 43000] Saving iteration Checkpoint
+[ITER 43000] Saving palette_max_iterations Checkpoint
+
+[ITER 44000] Evaluating test: L1 0.000965142329223454 PSNR 48.770283203125004 PSNR_PBR 38.57648832321167
+
+[ITER 44000] Evaluating train: L1 0.0006534535891842097 PSNR 51.58865161895752 PSNR_PBR 47.21387222290039
+
+[ITER 44000] Saving Gaussians
+[ITER 44000] Saving sample_num Checkpoint
+
+[ITER 44000] Saving Checkpoint
+[ITER 44000] Saving env_light Checkpoint
+[ITER 44000] Saving iteration Checkpoint
+[ITER 44000] Saving palette_max_iterations Checkpoint
+
+[ITER 45000] Evaluating test: L1 0.000962178016488906 PSNR 48.79645034790039 PSNR_PBR 38.52338623046875
+
+[ITER 45000] Evaluating train: L1 0.0006497129931813106 PSNR 51.62942398071289 PSNR_PBR 47.2302193069458
+
+[ITER 45000] Saving Gaussians
+[ITER 45000] Saving sample_num Checkpoint
+
+[ITER 45000] Saving Checkpoint
+[ITER 45000] Saving env_light Checkpoint
+[ITER 45000] Saving iteration Checkpoint
+[ITER 45000] Saving palette_max_iterations Checkpoint
+
+[ITER 46000] Evaluating test: L1 0.000959087398077827 PSNR 48.82037279129028 PSNR_PBR 38.459532012939455
+
+[ITER 46000] Evaluating train: L1 0.000646197953610681 PSNR 51.66414470672608 PSNR_PBR 47.39537197113037
+
+[ITER 46000] Saving Gaussians
+[ITER 46000] Saving sample_num Checkpoint
+
+[ITER 46000] Saving Checkpoint
+[ITER 46000] Saving env_light Checkpoint
+[ITER 46000] Saving iteration Checkpoint
+[ITER 46000] Saving palette_max_iterations Checkpoint
+
+[ITER 47000] Evaluating test: L1 0.0009570576966507361 PSNR 48.83936706542969 PSNR_PBR 38.58549160003662
+
+[ITER 47000] Evaluating train: L1 0.0006428523710928858 PSNR 51.69990268707276 PSNR_PBR 47.2950313949585
+
+[ITER 47000] Saving Gaussians
+[ITER 47000] Saving sample_num Checkpoint
+
+[ITER 47000] Saving Checkpoint
+[ITER 47000] Saving env_light Checkpoint
+[ITER 47000] Saving iteration Checkpoint
+[ITER 47000] Saving palette_max_iterations Checkpoint
+
+[ITER 48000] Evaluating test: L1 0.0009548025368712842 PSNR 48.85388702392578 PSNR_PBR 38.57684186935425
+
+[ITER 48000] Evaluating train: L1 0.0006399504013825208 PSNR 51.73268245697022 PSNR_PBR 47.485108337402345
+
+[ITER 48000] Saving Gaussians
+[ITER 48000] Saving sample_num Checkpoint
+
+[ITER 48000] Saving Checkpoint
+[ITER 48000] Saving env_light Checkpoint
+[ITER 48000] Saving iteration Checkpoint
+[ITER 48000] Saving palette_max_iterations Checkpoint
+
+[ITER 49000] Evaluating test: L1 0.0009533777963952162 PSNR 48.86819890975952 PSNR_PBR 38.64657691955566
+
+[ITER 49000] Evaluating train: L1 0.0006373101484496147 PSNR 51.760859985351566 PSNR_PBR 47.51750770568848
+
+[ITER 49000] Saving Gaussians
+[ITER 49000] Saving sample_num Checkpoint
+
+[ITER 49000] Saving Checkpoint
+[ITER 49000] Saving env_light Checkpoint
+[ITER 49000] Saving iteration Checkpoint
+[ITER 49000] Saving palette_max_iterations Checkpoint
+
+[ITER 50000] Evaluating test: L1 0.0009521937780664302 PSNR 48.87681690216065 PSNR_PBR 38.62159107208252
+
+[ITER 50000] Evaluating train: L1 0.000634770755423233 PSNR 51.78688037872315 PSNR_PBR 47.62793514251709
+
+[ITER 50000] Saving Gaussians
+[ITER 50000] Saving sample_num Checkpoint
+
+[ITER 50000] Saving Checkpoint
+[ITER 50000] Saving env_light Checkpoint
+[ITER 50000] Saving iteration Checkpoint
+[ITER 50000] Saving palette_max_iterations Checkpoint
+
+Training complete.

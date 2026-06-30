@@ -1,0 +1,458 @@
+Looking for config file in D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\cfg_args
+Config file found: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\cfg_args
+Rendering D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000
+Found transforms_train.json file, assuming Blender data set!
+Reading Training Transforms
+Reading Test Transforms
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Create Gaussians from checkpoint D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\chkpnt50000.pth
+build bvh cost time = 0.07773852348327637
+index table cost time = 0.589259147644043
+index table cost time = 0.38549304008483887
+index table cost time = 0.4654860496520996
+Using global incident light for regularization.
+Trying to load global incident light from  D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000/env_light_chkpnt50000.pth
+Not loading optimizer state_dict!
+Successfully loaded!
+
+Evaluating test: PSNR 26.638120546340943 SSIM 0.8009222376346589 LPIPS 0.09576102368533612
+Looking for config file in D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\cfg_args
+Config file found: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\cfg_args
+Rendering D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000
+Found transforms_train.json file, assuming Blender data set!
+Reading Training Transforms
+Reading Test Transforms
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Loading Training Cameras
+Loading Test Cameras
+Create Gaussians from checkpoint D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\chkpnt50000.pth
+build bvh cost time = 0.39865875244140625
+index table cost time = 0.6795227527618408
+index table cost time = 0.4252347946166992
+index table cost time = 0.4555540084838867
+Using global incident light for regularization.
+Trying to load global incident light from  D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000/env_light_chkpnt50000.pth
+Not loading optimizer state_dict!
+Successfully loaded!
+
+Evaluating test: PSNR 25.96927315711975 SSIM 0.7915916708111763 LPIPS 0.10055813252925873
+[AlbedoEval] evaluated=200 skipped=0 lpips_enabled=False
+[AlbedoEval] albedo_psnr=17.933063507080078
+[AlbedoEval] albedo_ssim=0.8612000516057015
+[AlbedoEval] albedo_lpips=None
+[AlbedoEval] roughness_mse=None
+[AlbedoEval] rgb_psnr=None
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00000.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00001.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00002.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00003.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00004.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00005.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00006.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00007.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00008.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00009.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00010.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00011.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00012.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00013.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00014.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00015.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00016.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00017.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00018.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00019.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00020.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00021.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00022.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00023.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00024.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00025.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00026.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00027.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00028.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00029.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00030.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00031.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00032.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00033.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00034.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00035.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00036.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00037.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00038.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00039.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00040.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00041.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00042.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00043.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00044.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00045.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00046.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00047.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00048.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00049.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00050.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00051.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00052.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00053.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00054.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00055.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00056.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00057.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00058.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00059.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00060.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00061.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00062.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00063.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00064.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00065.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00066.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00067.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00068.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00069.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00070.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00071.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00072.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00073.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00074.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00075.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00076.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00077.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00078.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00079.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00080.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00081.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00082.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00083.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00084.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00085.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00086.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00087.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00088.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00089.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00090.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00091.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00092.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00093.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00094.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00095.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00096.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00097.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00098.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00099.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00100.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00101.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00102.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00103.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00104.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00105.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00106.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00107.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00108.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00109.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00110.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00111.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00112.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00113.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00114.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00115.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00117.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00118.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00119.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00120.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00121.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00122.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00123.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00124.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00125.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00126.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00127.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00128.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00129.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00130.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00131.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00132.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00133.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00134.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00135.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00136.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00137.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00138.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00139.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00140.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00141.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00142.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00143.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00144.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00145.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00146.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00147.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00148.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00149.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00150.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00151.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00152.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00153.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00154.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00155.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00156.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00157.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00158.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00159.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00160.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00161.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00162.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00163.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00164.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00165.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00166.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00167.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00168.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00169.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00170.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00171.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00172.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00173.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00174.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00175.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00176.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00177.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00178.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00179.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00180.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00181.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00182.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00183.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00184.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00185.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00186.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00187.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00188.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00189.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00190.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00191.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00192.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00193.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00194.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00195.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00196.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00197.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00198.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00199.png from (50, 50) to (800, 800) with INTER_AREA.
+[AlbedoEval] evaluated=200 skipped=0 lpips_enabled=False
+[AlbedoEval] albedo_psnr=20.38771821022034
+[AlbedoEval] albedo_ssim=0.8709976643323898
+[AlbedoEval] albedo_lpips=None
+[AlbedoEval] roughness_mse=None
+[AlbedoEval] rgb_psnr=None
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00000.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00001.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00002.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00003.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00004.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00005.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00006.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00007.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00008.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00009.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00010.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00011.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00012.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00013.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00014.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00015.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00016.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00017.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00018.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00019.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00020.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00021.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00022.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00023.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00024.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00025.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00026.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00027.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00028.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00029.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00030.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00031.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00032.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00033.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00034.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00035.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00036.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00037.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00038.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00039.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00040.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00041.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00042.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00043.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00044.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00045.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00046.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00047.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00048.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00049.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00050.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00051.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00052.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00053.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00054.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00055.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00056.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00057.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00058.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00059.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00060.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00061.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00062.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00063.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00064.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00065.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00066.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00067.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00068.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00069.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00070.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00071.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00072.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00073.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00074.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00075.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00076.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00077.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00078.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00079.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00080.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00081.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00082.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00083.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00084.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00085.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00086.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00087.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00088.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00089.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00090.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00091.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00092.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00093.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00094.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00095.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00096.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00097.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00098.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00099.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00100.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00101.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00102.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00103.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00104.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00105.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00106.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00107.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00108.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00109.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00110.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00111.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00112.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00113.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00114.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00115.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00117.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00118.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00119.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00120.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00121.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00122.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00123.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00124.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00125.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00126.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00127.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00128.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00129.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00130.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00131.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00132.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00133.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00134.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00135.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00136.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00137.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00138.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00139.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00140.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00141.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00142.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00143.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00144.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00145.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00146.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00147.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00148.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00149.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00150.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00151.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00152.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00153.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00154.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00155.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00156.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00157.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00158.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00159.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00160.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00161.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00162.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00163.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00164.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00165.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00166.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00167.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00168.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00169.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00170.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00171.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00172.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00173.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00174.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00175.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00176.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00177.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00178.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00179.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00180.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00181.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00182.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00183.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00184.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00185.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00186.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00187.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00188.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00189.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00190.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00191.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00192.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00193.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00194.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00195.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00196.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00197.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00198.png from (50, 50) to (800, 800) with INTER_AREA.
+[Warning] Resize pred albedo D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00199.png from (50, 50) to (800, 800) with INTER_AREA.

@@ -1,0 +1,25 @@
+Compare Report 50000
+generated_at=2026-06-30 19:37:28
+
+baseline_dir=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000
+baseline_ckpt=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\chkpnt50000.pth
+baseline_test_loss=L1 0.0009010728506837041 PSNR 49.23431371688843 PSNR_PBR 42.39217342376709
+baseline_albedo_psnr=17.47663261413574
+baseline_metric_test=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\metric_test.txt
+baseline_vis_render=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\renders\00000.png
+baseline_vis_base_color=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00000.png
+baseline_vis_roughness=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\roughness\00000.png
+
+palette_dir=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000
+palette_ckpt=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\chkpnt50000.pth
+palette_test_loss=L1 0.0009521937780664302 PSNR 48.87681690216065 PSNR_PBR 38.62159107208252
+palette_albedo_psnr=19.89959195137024
+palette_metric_test=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\metric_test.txt
+palette_vis_render=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\renders\00000.png
+palette_vis_base_color=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00000.png
+palette_vis_roughness=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\roughness\00000.png
+
+baseline_metrics_albedo=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\metrics_albedo.txt
+palette_metrics_albedo=D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\metrics_albedo.txt
+
+albedo_protocol=gt_downsample_to_pred_50x50_masked_psnr

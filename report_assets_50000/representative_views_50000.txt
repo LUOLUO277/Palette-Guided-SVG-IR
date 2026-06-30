@@ -1,0 +1,79 @@
+[best_gain]
+view_id: 00059
+file_name: 00059.png
+baseline_albedo_psnr: 16.454479217529297
+palette_albedo_psnr: 19.62022590637207
+delta_albedo_psnr: 3.1657466888427734
+baseline_render_psnr_masked: 11.598965203339803
+palette_render_psnr_masked: 11.543165224897615
+delta_render_psnr_masked: -0.05579997844218809
+baseline_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\renders\00059.png
+baseline_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00059.png
+baseline_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\roughness\00059.png
+palette_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\renders\00059.png
+palette_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00059.png
+palette_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\roughness\00059.png
+gt_rgb_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_059\rgba.png
+gt_albedo_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_059\albedo.png
+gt_roughness_path: None
+gt_mask_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_059\rgba.png
+
+[median_gain]
+view_id: 00086
+file_name: 00086.png
+baseline_albedo_psnr: 17.766071319580078
+palette_albedo_psnr: 20.215164184570312
+delta_albedo_psnr: 2.4490928649902344
+baseline_render_psnr_masked: 12.542127833381521
+palette_render_psnr_masked: 12.508890963106865
+delta_render_psnr_masked: -0.03323687027465638
+baseline_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\renders\00086.png
+baseline_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00086.png
+baseline_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\roughness\00086.png
+palette_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\renders\00086.png
+palette_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00086.png
+palette_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\roughness\00086.png
+gt_rgb_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_086\rgba.png
+gt_albedo_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_086\albedo.png
+gt_roughness_path: None
+gt_mask_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_086\rgba.png
+
+[worst_tradeoff]
+view_id: 00116
+file_name: 00116.png
+baseline_albedo_psnr: 18.812320709228516
+palette_albedo_psnr: 20.429353713989258
+delta_albedo_psnr: 1.6170330047607422
+baseline_render_psnr_masked: 13.277862004709922
+palette_render_psnr_masked: 13.151586242772026
+delta_render_psnr_masked: -0.12627576193789558
+baseline_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\renders\00116.png
+baseline_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png
+baseline_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\roughness\00116.png
+palette_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\renders\00116.png
+palette_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png
+palette_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\roughness\00116.png
+gt_rgb_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\rgba.png
+gt_albedo_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\albedo.png
+gt_roughness_path: None
+gt_mask_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\rgba.png
+
+[render_tradeoff_view]
+view_id: 00116
+file_name: 00116.png
+baseline_albedo_psnr: 18.812320709228516
+palette_albedo_psnr: 20.429353713989258
+delta_albedo_psnr: 1.6170330047607422
+baseline_render_psnr_masked: 13.277862004709922
+palette_render_psnr_masked: 13.151586242772026
+delta_render_psnr_masked: -0.12627576193789558
+baseline_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\renders\00116.png
+baseline_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png
+baseline_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_nopalette_shorttrain_r4_i50000\test\ours_50000\roughness\00116.png
+palette_render_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\renders\00116.png
+palette_base_color_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\base_color\00116.png
+palette_roughness_path: D:\Grade Three Down\Experiment\SVG-IR\output\TensoIR\armadillo\render_relight_palette_shorttrain_r4_i50000\test\ours_50000\roughness\00116.png
+gt_rgb_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\rgba.png
+gt_albedo_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\albedo.png
+gt_roughness_path: None
+gt_mask_path: D:\Grade Three Down\Experiment\SVG-IR\dataset\TensoIR\armadillo\test_116\rgba.png

@@ -280,12 +280,19 @@ class GaussianModel:
     def _get_stage1_init_colors(self):
         prefer_sh = bool(getattr(self, "_palette_init_prefer_sh", False))
         if (not prefer_sh) and isinstance(self._base_color, torch.Tensor) and self._base_color.numel() > 0:
-            if self._base_color.ndim == 2 and self._base_color.shape[1] == self.vertex_num * 3:
-                colors = self.base_color_activation(self._base_color).reshape(-1, self.vertex_num, 3).mean(dim=1)
-                return colors.clamp(0.0, 1.0)
-            if self._base_color.ndim == 2 and self._base_color.shape[1] == 3:
-                colors = self.base_color_activation(self._base_color)
-                return colors.clamp(0.0, 1.0)
+            base_color_detached = self._base_color.detach()
+            is_zero_placeholder = torch.allclose(
+                base_color_detached,
+                torch.zeros_like(base_color_detached),
+                atol=1e-8,
+            )
+            if not is_zero_placeholder:
+                if self._base_color.ndim == 2 and self._base_color.shape[1] == self.vertex_num * 3:
+                    colors = self.base_color_activation(self._base_color).reshape(-1, self.vertex_num, 3).mean(dim=1)
+                    return colors.clamp(0.0, 1.0)
+                if self._base_color.ndim == 2 and self._base_color.shape[1] == 3:
+                    colors = self.base_color_activation(self._base_color)
+                    return colors.clamp(0.0, 1.0)
 
         if isinstance(self._shs_dc, torch.Tensor) and self._shs_dc.numel() > 0:
             shs_dc = self._shs_dc.transpose(1, 2)
@@ -997,6 +1004,8 @@ class GaussianModel:
         return gaussians
 
     def create_from_ckpt(self, checkpoint_path, restore_optimizer=False, from_gs=False):
+        opt_dict = None
+        palette_state = None
         (model_args, first_iter) = torch.load(checkpoint_path)
         if len(model_args) == 16:
             from_gs = True
@@ -1039,7 +1048,6 @@ class GaussianModel:
         self.denom = denom
 
         if self.use_pbr:
-            palette_state = None
             if len(model_args) > 15 and (not from_gs):
                 (self._base_color,
                  self._roughness,
@@ -1055,6 +1063,7 @@ class GaussianModel:
                 if len(model_args) > 22 and isinstance(model_args[-1], dict) and "palette_mlp_state" in model_args[-1]:
                     palette_state = model_args[-1]
             else:
+                self._palette_init_prefer_sh = True
                 self._base_color = nn.Parameter(torch.zeros_like(self._xyz).repeat(1, self.vertex_num).requires_grad_(True))
                 self._normal = nn.Parameter(torch.zeros_like(self._xyz).repeat(1, self.vertex_num).requires_grad_(True))
                 roughness = torch.zeros_like(self._xyz[..., :1])
@@ -1075,7 +1084,7 @@ class GaussianModel:
                 # self.update_radiace()
             if palette_state is not None:
                 self._restore_palette_state(palette_state)
-        if restore_optimizer:
+        if restore_optimizer and opt_dict is not None:
             self._pending_optimizer_state = opt_dict
             self._pending_optimizer_restore_info = {
                 "checkpoint_has_palette": palette_state is not None,
