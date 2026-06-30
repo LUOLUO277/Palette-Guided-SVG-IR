@@ -93,7 +93,7 @@ def generate_envir_map_dir(envmap_h, envmap_w, is_jittor=False):
 def importance_sampling(envir_map, N, sample_number=128):
     # envir_map = F.interpolate(envir_map, size=(32, 64), mode='bilinear', align_corners=True)
 
-    # 调整维度为 [1, 3, 512, 1024]，即 [batch_size, channels, height, width]
+    # 调整维度�?[1, 3, 512, 1024]，即 [batch_size, channels, height, width]
     envir_map = envir_map.permute(2, 0, 1).unsqueeze(0)  # [1, 3, 512, 1024]
     envir_map = torch.clamp(envir_map, 0.0, 10.0)
 
@@ -166,6 +166,7 @@ class GaussianModel:
     def __init__(self, sh_degree: int, render_type='render'):
         self.render_type = render_type
         self.use_pbr = render_type in ['render_relight']
+        self.use_palette_material = False
         self.active_sh_degree = 3
         self.max_sh_degree = sh_degree
         self._xyz = torch.empty(0)
@@ -182,6 +183,9 @@ class GaussianModel:
         self.normal_gradient_accum = torch.empty(0)
         self.denom = torch.empty(0)
         self.optimizer = None
+        self._pending_optimizer_state = None
+        self._pending_optimizer_restore_info = None
+        self._palette_init_prefer_sh = False
         self.percent_dense = 0
         self.spatial_lr_scale = 0
         self.config = [True, True, True]
@@ -212,6 +216,10 @@ class GaussianModel:
             self.palette_tau_start = 1.0
             self.palette_tau_end = 0.1
             self.palette_pe_freqs = 4
+            self.palette_mlp_hidden_dim = 64
+            self.palette_mlp_layers = 2
+            self.palette_kmeans_iters = 20
+            self.palette_debug = False
             self._palette_albedo_raw = None
             self._palette_roughness_raw = None
             self.palette_mlp = None
@@ -259,18 +267,19 @@ class GaussianModel:
             encodings.append(torch.cos(freq * xyz_norm))
         return torch.cat(encodings, dim=-1)
 
-    def _build_palette_mlp(self, input_dim, hidden_dim=64):
-        return nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.ReLU(inplace=True),
-            nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(inplace=True),
-            nn.Linear(hidden_dim, self.palette_K),
-        ).cuda()
+    def _build_palette_mlp(self, input_dim, hidden_dim=None):
+        hidden_dim = int(self.palette_mlp_hidden_dim if hidden_dim is None else hidden_dim)
+        num_hidden = max(int(self.palette_mlp_layers), 1)
+        layers = [nn.Linear(input_dim, hidden_dim), nn.ReLU(inplace=True)]
+        for _ in range(num_hidden - 1):
+            layers.extend([nn.Linear(hidden_dim, hidden_dim), nn.ReLU(inplace=True)])
+        layers.append(nn.Linear(hidden_dim, self.palette_K))
+        return nn.Sequential(*layers).cuda()
 
     @torch.no_grad()
     def _get_stage1_init_colors(self):
-        if isinstance(self._base_color, torch.Tensor) and self._base_color.numel() > 0:
+        prefer_sh = bool(getattr(self, "_palette_init_prefer_sh", False))
+        if (not prefer_sh) and isinstance(self._base_color, torch.Tensor) and self._base_color.numel() > 0:
             if self._base_color.ndim == 2 and self._base_color.shape[1] == self.vertex_num * 3:
                 colors = self.base_color_activation(self._base_color).reshape(-1, self.vertex_num, 3).mean(dim=1)
                 return colors.clamp(0.0, 1.0)
@@ -291,7 +300,8 @@ class GaussianModel:
         return torch.full((self.get_xyz.shape[0], 3), 0.5, dtype=self.get_xyz.dtype, device=self.get_xyz.device)
 
     @torch.no_grad()
-    def _kmeans_colors(self, colors, K, iters=20):
+    def _kmeans_colors(self, colors, K, iters=None):
+        iters = int(self.palette_kmeans_iters if iters is None else iters)
         n = colors.shape[0]
         if n == 0:
             centers = torch.full((K, 3), 0.5, dtype=colors.dtype, device=colors.device)
@@ -342,6 +352,7 @@ class GaussianModel:
         self.palette_mlp = self._build_palette_mlp(input_dim)
         self._palette_xyz_min = self.get_xyz.detach().amin(dim=0)
         self._palette_xyz_max = self.get_xyz.detach().amax(dim=0)
+        self._palette_init_prefer_sh = False
 
     def compose_palette_material(self, return_weights=False):
         if not (self.use_pbr and self.use_palette_material):
@@ -372,7 +383,8 @@ class GaussianModel:
 
         final_albedo = (main_albedo_v + delta_a).clamp(0.0, 1.0)
         final_roughness = (main_roughness_v + delta_r).clamp(self.palette_r_min, 1.0)
-        final_albedo = (final_albedo * self.base_color_scale[None, None, :]).clamp(0.0, 1.0)
+        final_albedo = torch.nan_to_num((final_albedo * self.base_color_scale[None, None, :]).clamp(0.0, 1.0), nan=0.0)
+        final_roughness = torch.nan_to_num(final_roughness, nan=self.palette_r_min).clamp(self.palette_r_min, 1.0)
         final_albedo = final_albedo.reshape(-1, self.vertex_num * 3)
         final_roughness = final_roughness.reshape(-1, self.vertex_num)
 
@@ -399,6 +411,47 @@ class GaussianModel:
             "loss_palette_dead": loss_dead,
         }
 
+    def get_palette_debug_info(self):
+        base_color_shape = None
+        roughness_shape = None
+        if self.use_pbr:
+            try:
+                base_color_shape = tuple(self.get_base_color.shape)
+            except Exception:
+                base_color_shape = None
+            try:
+                roughness_shape = tuple(self.get_roughness.shape)
+            except Exception:
+                roughness_shape = None
+
+        info = {
+            "use_pbr": bool(self.use_pbr),
+            "use_palette_material": bool(getattr(self, "use_palette_material", False)),
+            "_xyz.shape": tuple(self._xyz.shape) if isinstance(self._xyz, torch.Tensor) else None,
+            "_base_color.shape": tuple(self._base_color.shape) if isinstance(self._base_color, torch.Tensor) else None,
+            "_roughness.shape": tuple(self._roughness.shape) if isinstance(self._roughness, torch.Tensor) else None,
+            "get_base_color.shape": base_color_shape,
+            "get_roughness.shape": roughness_shape,
+            "_palette_albedo_raw.shape": tuple(self._palette_albedo_raw.shape) if isinstance(self._palette_albedo_raw, torch.Tensor) else None,
+            "_palette_roughness_raw.shape": tuple(self._palette_roughness_raw.shape) if isinstance(self._palette_roughness_raw, torch.Tensor) else None,
+            "optimizer_param_groups": [],
+        }
+        if self.optimizer is not None:
+            for group in self.optimizer.param_groups:
+                shape = None
+                if len(group.get("params", [])) > 0 and isinstance(group["params"][0], torch.Tensor):
+                    shape = tuple(group["params"][0].shape)
+                info["optimizer_param_groups"].append({"name": group.get("name"), "shape": shape})
+        try:
+            palette_losses = self.get_palette_regularization_loss()
+            info["palette_regularization_loss"] = {
+                k: (float(v.detach().item()) if torch.is_tensor(v) and v.numel() == 1 else None)
+                for k, v in palette_losses.items()
+            }
+        except Exception as exc:
+            info["palette_regularization_loss_error"] = str(exc)
+        return info
+
     def update_palette_temperature(self, iteration, max_iterations):
         if not (self.use_pbr and self.use_palette_material):
             return
@@ -418,6 +471,10 @@ class GaussianModel:
         self.palette_tau_start = float(palette_state.get("palette_tau_start", self.palette_tau_start))
         self.palette_tau_end = float(palette_state.get("palette_tau_end", self.palette_tau_end))
         self.palette_pe_freqs = int(palette_state.get("palette_pe_freqs", self.palette_pe_freqs))
+        self.palette_mlp_hidden_dim = int(palette_state.get("palette_mlp_hidden_dim", self.palette_mlp_hidden_dim))
+        self.palette_mlp_layers = int(palette_state.get("palette_mlp_layers", self.palette_mlp_layers))
+        self.palette_kmeans_iters = int(palette_state.get("palette_kmeans_iters", self.palette_kmeans_iters))
+        self.palette_debug = bool(palette_state.get("palette_debug", self.palette_debug))
         self._palette_xyz_min = palette_state.get("palette_xyz_min", None)
         self._palette_xyz_max = palette_state.get("palette_xyz_max", None)
 
@@ -521,6 +578,10 @@ class GaussianModel:
                     "palette_tau_start": self.palette_tau_start,
                     "palette_tau_end": self.palette_tau_end,
                     "palette_pe_freqs": self.palette_pe_freqs,
+                    "palette_mlp_hidden_dim": self.palette_mlp_hidden_dim,
+                    "palette_mlp_layers": self.palette_mlp_layers,
+                    "palette_kmeans_iters": self.palette_kmeans_iters,
+                    "palette_debug": self.palette_debug,
                     "palette_xyz_min": self._palette_xyz_min,
                     "palette_xyz_max": self._palette_xyz_max,
                     "palette_albedo_raw": self._palette_albedo_raw,
@@ -651,7 +712,11 @@ class GaussianModel:
         if self.use_pbr and self.use_palette_material:
             base_color, _ = self.compose_palette_material(return_weights=False)
             return base_color
-        return self.base_color_activation(self._base_color) * self.base_color_scale[None, :].repeat_interleave(repeats=self.vertex_num, dim=1)
+        base_color = self.base_color_activation(self._base_color)
+        if base_color.ndim == 2 and base_color.shape[1] == 3:
+            base_color = base_color.repeat(1, self.vertex_num)
+        scale = self.base_color_scale.repeat(self.vertex_num)[None, :]
+        return base_color * scale
     
     @property
     def get_albedo(self):
@@ -662,7 +727,10 @@ class GaussianModel:
         if self.use_pbr and self.use_palette_material:
             _, roughness = self.compose_palette_material(return_weights=False)
             return torch.nan_to_num(roughness, nan=1e-8)
-        return torch.nan_to_num(self.roughness_activation(self._roughness), nan=1e-8)
+        roughness = torch.nan_to_num(self.roughness_activation(self._roughness), nan=1e-8)
+        if roughness.ndim == 2 and roughness.shape[1] == 1:
+            roughness = roughness.repeat(1, self.vertex_num)
+        return roughness
     
     @property
     def get_metallic(self):
@@ -933,6 +1001,7 @@ class GaussianModel:
         if len(model_args) == 16:
             from_gs = True
         if from_gs:
+            self._palette_init_prefer_sh = True
             (self.active_sh_degree,
             self._xyz,
             self._shs_dc,
@@ -1007,11 +1076,10 @@ class GaussianModel:
             if palette_state is not None:
                 self._restore_palette_state(palette_state)
         if restore_optimizer:
-            # TODO automatically match the opt_dict
-            try:
-                self.optimizer.load_state_dict(opt_dict)
-            except:
-                print("Not loading optimizer state_dict!")
+            self._pending_optimizer_state = opt_dict
+            self._pending_optimizer_restore_info = {
+                "checkpoint_has_palette": palette_state is not None,
+            }
 
         return first_iter
 
@@ -1065,7 +1133,13 @@ class GaussianModel:
         self.denom = torch.zeros((self.get_xyz.shape[0], 1), device="cuda")
 
         if self.use_pbr:
-            self.use_palette_material = bool(getattr(training_args, "use_palette_material", self.use_palette_material)) and self.use_pbr
+            requested_palette = bool(getattr(training_args, "use_palette_material", False))
+            has_palette_state = (
+                self._palette_albedo_raw is not None
+                and self._palette_roughness_raw is not None
+                and self.palette_mlp is not None
+            )
+            self.use_palette_material = self.use_pbr and (requested_palette or has_palette_state)
             self.palette_K = int(getattr(training_args, "palette_K", self.palette_K))
             self.palette_a_min = float(getattr(training_args, "palette_a_min", self.palette_a_min))
             self.palette_a_max = float(getattr(training_args, "palette_a_max", self.palette_a_max))
@@ -1075,6 +1149,11 @@ class GaussianModel:
             self.palette_delta_r = float(getattr(training_args, "palette_delta_r", self.palette_delta_r))
             self.palette_tau_start = float(getattr(training_args, "palette_tau_start", self.palette_tau_start))
             self.palette_tau_end = float(getattr(training_args, "palette_tau_end", self.palette_tau_end))
+            self.palette_pe_freqs = int(getattr(training_args, "palette_pe_freqs", self.palette_pe_freqs))
+            self.palette_mlp_hidden_dim = int(getattr(training_args, "palette_mlp_hidden_dim", self.palette_mlp_hidden_dim))
+            self.palette_mlp_layers = int(getattr(training_args, "palette_mlp_layers", self.palette_mlp_layers))
+            self.palette_kmeans_iters = int(getattr(training_args, "palette_kmeans_iters", self.palette_kmeans_iters))
+            self.palette_debug = bool(getattr(training_args, "palette_debug", self.palette_debug))
             self.palette_tau = self.palette_tau_start
 
             if self.use_palette_material and (self._palette_albedo_raw is None or self._palette_roughness_raw is None or self.palette_mlp is None):
@@ -1118,6 +1197,26 @@ class GaussianModel:
                     l.append({'params': [param], 'lr': palette_mlp_lr, "name": f"palette_mlp_{name}"})
 
         self.optimizer = torch.optim.Adam(l, lr=1e-4, eps=1e-15)
+        if self._pending_optimizer_state is not None:
+            restore_info = self._pending_optimizer_restore_info or {}
+            loaded_group_count = len(self._pending_optimizer_state.get("param_groups", []))
+            current_group_count = len(self.optimizer.param_groups)
+            checkpoint_has_palette = bool(restore_info.get("checkpoint_has_palette", False))
+            try:
+                if loaded_group_count != current_group_count:
+                    if self.use_palette_material and not checkpoint_has_palette:
+                        print("[Checkpoint] Optimizer state was not restored because param groups differ. This is expected when switching from Stage1 to palette Stage2.")
+                    else:
+                        print(f"[Checkpoint] Warning: optimizer state was not restored because param groups differ ({loaded_group_count} vs {current_group_count}). Training will continue with a fresh optimizer state.")
+                else:
+                    self.optimizer.load_state_dict(self._pending_optimizer_state)
+                    print("[Checkpoint] optimizer state restored.")
+            except Exception as exc:
+                print(f"[Checkpoint] Warning: optimizer state was not restored: {exc}")
+            finally:
+                self._pending_optimizer_state = None
+                self._pending_optimizer_restore_info = None
+        self._pending_optimizer_restore_info = None
         self.xyz_scheduler_args = get_expon_lr_func(lr_init=training_args.position_lr_init * self.spatial_lr_scale,
                                                     lr_final=training_args.position_lr_final * self.spatial_lr_scale,
                                                     lr_delay_mult=training_args.position_lr_delay_mult,
@@ -1199,7 +1298,7 @@ class GaussianModel:
                 l.append('base_color_{}'.format(i))
             for i in range(self._normal.shape[1]):
                 l.append('normal_{}'.format(i))
-            for i in range(self._normal.shape[1]):
+            for i in range(self._roughness.shape[1]):
                 l.append('roughness_{}'.format(i))
             for i in range(self._incidents_dc.shape[1] * self._incidents_dc.shape[2]):
                 l.append('incidents_dc_{}'.format(i))
@@ -1314,11 +1413,11 @@ class GaussianModel:
             for idx, attr_name in enumerate(shading_normal_names):
                 shading_normal[:, idx] = np.asarray(plydata.elements[0][attr_name])
 
-            roughness_names = [p.name for p in plydata.elements[0].properties if p.name.startswith("normal")]
-            roughness_names = sorted(shading_normal_names, key=lambda x: int(x.split('_')[-1]))
+            roughness_names = [p.name for p in plydata.elements[0].properties if p.name.startswith("roughness")]
+            roughness_names = sorted(roughness_names, key=lambda x: int(x.split('_')[-1]))
             roughness = np.zeros((xyz.shape[0], len(roughness_names)))
 
-            for idx, attr_name in enumerate(shading_normal_names):
+            for idx, attr_name in enumerate(roughness_names):
                 roughness[:, idx] = np.asarray(plydata.elements[0][attr_name])
 
             # roughness = np.asarray(plydata.elements[0]["roughness"])[..., np.newaxis]
@@ -1642,3 +1741,4 @@ class GaussianModel:
         # self.normal_gradient_accum[update_filter] += torch.norm(
         #     self._normal.grad[update_filter], dim=-1, keepdim=True)
         self.denom[update_filter] += 1
+

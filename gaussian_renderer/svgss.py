@@ -14,6 +14,7 @@ import time
 
 def render_view(viewpoint_camera: Camera, pc: GaussianModel, pipe, bg_color: torch.Tensor,
                 scaling_modifier=1.0, override_color=None, is_training=False, dict_params=None):
+    dict_params = dict_params or {}
     patch_size = [float('inf'), float('inf')]
     direct_light_env_light = dict_params.get("env_light")
     
@@ -465,20 +466,29 @@ def render_svgss(viewpoint_camera: Camera, pc: GaussianModel, pipe, bg_color: to
     Render the scene.
     Background tensor (bg_color) must be on GPU!
     """
-    iteration = kwargs.get("iteration", 0)
+    dict_params = dict_params or {}
+    iteration = kwargs.get("iteration", None)
+    if iteration is None and dict_params is not None:
+        iteration = dict_params.get("iteration", 0)
+    if iteration is None:
+        iteration = 0
 
     # Palette temperature annealing should happen before material is queried in render_view().
     if is_training and getattr(pc, "use_palette_material", False):
-        max_iterations = getattr(opt, "iterations", None)
+        max_iterations = dict_params.get("palette_max_iterations")
+        if max_iterations is None:
+            max_iterations = getattr(opt, "iterations", None)
         if max_iterations is None:
             max_iterations = getattr(opt, "position_lr_max_steps", None)
-        if max_iterations is not None and hasattr(pc, "update_palette_temperature"):
+        if max_iterations is None:
+            max_iterations = 1
+        if hasattr(pc, "update_palette_temperature"):
             pc.update_palette_temperature(iteration, max_iterations)
 
     results = render_view(viewpoint_camera, pc, pipe, bg_color,
                           scaling_modifier, override_color, is_training, dict_params)
     if is_training:
-        loss, tb_dict = calculate_loss(viewpoint_camera, pc, results, opt, direct_light_env_light=dict_params['env_light'], iteration=iteration)
+        loss, tb_dict = calculate_loss(viewpoint_camera, pc, results, opt, direct_light_env_light=dict_params.get('env_light'), iteration=iteration)
         results["tb_dict"] = tb_dict
         results["loss"] = loss
 

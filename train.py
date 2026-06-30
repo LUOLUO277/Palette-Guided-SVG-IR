@@ -25,6 +25,12 @@ from torchvision.utils import save_image, make_grid
 from lpipsPyTorch import lpips
 from scene.utils import save_render_orb, save_depth_orb, save_normal_orb, save_albedo_orb, save_roughness_orb
 
+def _palette_grad_norm(param):
+    if param is None or getattr(param, "grad", None) is None:
+        return None
+    return float(param.grad.norm().detach())
+
+
 
 def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams, is_pbr=False):
     first_iter = 0
@@ -48,6 +54,16 @@ def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams
         gaussians.create_from_pcd(scene.scene_info.point_cloud, scene.cameras_extent)
 
     gaussians.training_setup(opt)
+
+    if getattr(opt, "palette_debug", False) and hasattr(gaussians, "get_palette_debug_info"):
+        try:
+            debug_info = gaussians.get_palette_debug_info()
+            print("[PaletteDebug] state begin")
+            for key, value in debug_info.items():
+                print(f"[PaletteDebug] {key}: {value}")
+            print("[PaletteDebug] state end")
+        except Exception as exc:
+            print(f"[PaletteDebug] failed: {exc}")
 
     """
     Setup PBR components
@@ -77,8 +93,11 @@ def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams
             else:
                 print("Failed to load!")
 
-            direct_env_light.training_setup(opt)
-            pbr_kwargs["env_light"] = direct_env_light
+        direct_env_light.training_setup(opt)
+        pbr_kwargs["env_light"] = direct_env_light
+
+        if getattr(opt, "use_palette_material", False):
+            opt.densify_until_iter = min(opt.densify_until_iter, first_iter)
 
         # gaussians.calculate_radiance(direct_env_light)
 
@@ -134,9 +153,11 @@ def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams
         if (iteration - 1) == args.debug_from:
             pipe.debug = True
 
-        pbr_kwargs["iteration"] = iteration - first_iter
+        stage2_iter = iteration - first_iter
+        pbr_kwargs["iteration"] = stage2_iter
+        pbr_kwargs["palette_max_iterations"] = max(opt.iterations - first_iter, 1)
         render_pkg = render_fn(viewpoint_cam, gaussians, pipe, background,
-                               opt=opt, is_training=True, dict_params=pbr_kwargs, iteration=iteration)
+                               opt=opt, is_training=True, dict_params=pbr_kwargs, iteration=stage2_iter)
 
         viewspace_point_tensor, visibility_filter, radii = \
             render_pkg["viewspace_points"], render_pkg["visibility_filter"], render_pkg["radii"]
@@ -145,6 +166,22 @@ def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams
         tb_dict = render_pkg["tb_dict"]
         loss += render_pkg["loss"]
         loss.backward()
+        if getattr(opt, "use_palette_material", False) and iteration == first_iter + 1:
+            print("[PaletteGradCheck]")
+            for name, param in [
+                ("_base_color", getattr(gaussians, "_base_color", None)),
+                ("_roughness", getattr(gaussians, "_roughness", None)),
+                ("_palette_albedo_raw", getattr(gaussians, "_palette_albedo_raw", None)),
+                ("_palette_roughness_raw", getattr(gaussians, "_palette_roughness_raw", None)),
+            ]:
+                print(f"[PaletteGradCheck] {name} grad_norm = {_palette_grad_norm(param)}")
+
+            mlp_grad_norm_sum = 0.0
+            if getattr(gaussians, "palette_mlp", None) is not None:
+                for param in gaussians.palette_mlp.parameters():
+                    if param.grad is not None:
+                        mlp_grad_norm_sum += float(param.grad.norm().detach())
+            print(f"[PaletteGradCheck] palette_mlp grad_norm_sum = {mlp_grad_norm_sum}")
         gaussians.debug()
 
         # # test part 
@@ -468,3 +505,4 @@ if __name__ == "__main__":
 
     # All done
     print("\nTraining complete.")
+
