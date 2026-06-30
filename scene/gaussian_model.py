@@ -9,7 +9,7 @@ from utils.graphics_utils import BasicPointCloud
 from utils.general_utils import strip_symmetric, build_scaling_rotation
 from utils.general_utils import inverse_sigmoid, get_expon_lr_func, build_rotation
 from utils.general_utils import rotation_to_quaternion, quaternion_multiply, quaternion2rotmat
-from utils.sh_utils import RGB2SH, eval_sh
+from utils.sh_utils import RGB2SH, SH2RGB, eval_sh
 from utils.system_utils import mkdir_p
 from plyfile import PlyData, PlyElement
 # from custom_knn._C import topKdistCUDA2
@@ -200,6 +200,23 @@ class GaussianModel:
             self._radiances = torch.empty(0)
             self._radiance_ratio = torch.tensor(1.0, device="cuda")
             self.calc_radiance = torch.empty(0)
+            self.use_palette_material = False
+            self.palette_K = 8
+            self.palette_a_min = 0.03
+            self.palette_a_max = 0.97
+            self.palette_r_min = 0.04
+            self.palette_r_max = 1.0
+            self.palette_delta_a = 0.10
+            self.palette_delta_r = 0.08
+            self.palette_tau = 1.0
+            self.palette_tau_start = 1.0
+            self.palette_tau_end = 0.1
+            self.palette_pe_freqs = 4
+            self._palette_albedo_raw = None
+            self._palette_roughness_raw = None
+            self.palette_mlp = None
+            self._palette_xyz_min = None
+            self._palette_xyz_max = None
         
         self.base_color_scale = torch.ones(3, dtype=torch.float, device="cuda")
         self.renderer = None
@@ -225,6 +242,214 @@ class GaussianModel:
                     "PBR rendering requires pbgi/slangtorch dependencies that are not available."
                 )
             self.renderer = Renderer.Renderer()
+
+    def _bounded_sigmoid(self, raw, min_val, max_val):
+        return torch.sigmoid(raw) * (max_val - min_val) + min_val
+
+    def _inverse_bounded_sigmoid(self, value, min_val, max_val, eps=1e-4):
+        x = (value - min_val) / (max_val - min_val)
+        x = x.clamp(eps, 1.0 - eps)
+        return inverse_sigmoid(x)
+
+    def _palette_positional_encoding(self, xyz_norm):
+        encodings = [xyz_norm]
+        for i in range(self.palette_pe_freqs):
+            freq = float(2 ** i) * np.pi
+            encodings.append(torch.sin(freq * xyz_norm))
+            encodings.append(torch.cos(freq * xyz_norm))
+        return torch.cat(encodings, dim=-1)
+
+    def _build_palette_mlp(self, input_dim, hidden_dim=64):
+        return nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_dim, self.palette_K),
+        ).cuda()
+
+    @torch.no_grad()
+    def _get_stage1_init_colors(self):
+        if isinstance(self._base_color, torch.Tensor) and self._base_color.numel() > 0:
+            if self._base_color.ndim == 2 and self._base_color.shape[1] == self.vertex_num * 3:
+                colors = self.base_color_activation(self._base_color).reshape(-1, self.vertex_num, 3).mean(dim=1)
+                return colors.clamp(0.0, 1.0)
+            if self._base_color.ndim == 2 and self._base_color.shape[1] == 3:
+                colors = self.base_color_activation(self._base_color)
+                return colors.clamp(0.0, 1.0)
+
+        if isinstance(self._shs_dc, torch.Tensor) and self._shs_dc.numel() > 0:
+            shs_dc = self._shs_dc.transpose(1, 2)
+            try:
+                colors = SH2RGB(shs_dc[..., 0])
+            except Exception:
+                dummy_dir = torch.zeros((shs_dc.shape[0], 3), dtype=shs_dc.dtype, device=shs_dc.device)
+                dummy_dir[:, 2] = 1.0
+                colors = eval_sh(0, shs_dc, dummy_dir) + 0.5
+            return colors.clamp(0.0, 1.0)
+
+        return torch.full((self.get_xyz.shape[0], 3), 0.5, dtype=self.get_xyz.dtype, device=self.get_xyz.device)
+
+    @torch.no_grad()
+    def _kmeans_colors(self, colors, K, iters=20):
+        n = colors.shape[0]
+        if n == 0:
+            centers = torch.full((K, 3), 0.5, dtype=colors.dtype, device=colors.device)
+            labels = torch.zeros((0,), dtype=torch.long, device=colors.device)
+            return centers, labels
+
+        if n >= K:
+            init_idx = torch.randperm(n, device=colors.device)[:K]
+        else:
+            init_idx = torch.randint(0, n, (K,), device=colors.device)
+        centers = colors[init_idx].clone()
+        labels = torch.zeros((n,), dtype=torch.long, device=colors.device)
+
+        for _ in range(iters):
+            distances = torch.cdist(colors, centers)
+            labels = distances.argmin(dim=1)
+            for k in range(K):
+                mask = labels == k
+                if mask.any():
+                    centers[k] = colors[mask].mean(dim=0)
+                else:
+                    centers[k] = colors[torch.randint(0, n, (1,), device=colors.device)[0]]
+
+        return centers, labels
+
+    @torch.no_grad()
+    def init_palette_material_from_stage1(self, training_args=None):
+        if not (self.use_pbr and self.use_palette_material):
+            return
+
+        colors = self._get_stage1_init_colors()
+        centers, _ = self._kmeans_colors(colors, self.palette_K)
+        self._palette_albedo_raw = nn.Parameter(
+            self._inverse_bounded_sigmoid(centers, self.palette_a_min, self.palette_a_max).detach().requires_grad_(True)
+        )
+        roughness_init = torch.full((self.palette_K, 1), 0.5, dtype=colors.dtype, device=colors.device)
+        self._palette_roughness_raw = nn.Parameter(
+            self._inverse_bounded_sigmoid(roughness_init, self.palette_r_min, self.palette_r_max).detach().requires_grad_(True)
+        )
+
+        n = self.get_xyz.shape[0]
+        device = self.get_xyz.device
+        dtype = self.get_xyz.dtype
+        self._base_color = nn.Parameter(torch.zeros((n, self.vertex_num * 3), dtype=dtype, device=device).requires_grad_(True))
+        self._roughness = nn.Parameter(torch.zeros((n, self.vertex_num), dtype=dtype, device=device).requires_grad_(True))
+
+        input_dim = 3 + 2 * 3 * self.palette_pe_freqs
+        self.palette_mlp = self._build_palette_mlp(input_dim)
+        self._palette_xyz_min = self.get_xyz.detach().amin(dim=0)
+        self._palette_xyz_max = self.get_xyz.detach().amax(dim=0)
+
+    def compose_palette_material(self, return_weights=False):
+        if not (self.use_pbr and self.use_palette_material):
+            raise RuntimeError("Palette material is not enabled.")
+        if self.palette_mlp is None or self._palette_albedo_raw is None or self._palette_roughness_raw is None:
+            raise RuntimeError("Palette material parameters are not initialized.")
+
+        xyz = self.get_xyz
+        if self._palette_xyz_min is None or self._palette_xyz_max is None:
+            self._palette_xyz_min = xyz.detach().amin(dim=0)
+            self._palette_xyz_max = xyz.detach().amax(dim=0)
+
+        xyz_norm = (xyz - self._palette_xyz_min) / (self._palette_xyz_max - self._palette_xyz_min + 1e-6)
+        xyz_norm = xyz_norm.clamp(0.0, 1.0)
+        pe = self._palette_positional_encoding(xyz_norm)
+        logits = self.palette_mlp(pe)
+        weights = torch.softmax(logits / max(float(self.palette_tau), 1e-6), dim=-1)
+
+        palette_albedo = self._bounded_sigmoid(self._palette_albedo_raw, self.palette_a_min, self.palette_a_max)
+        palette_roughness = self._bounded_sigmoid(self._palette_roughness_raw, self.palette_r_min, self.palette_r_max)
+        main_albedo = weights @ palette_albedo
+        main_roughness = weights @ palette_roughness
+
+        main_albedo_v = main_albedo[:, None, :].expand(-1, self.vertex_num, -1)
+        main_roughness_v = main_roughness.expand(-1, self.vertex_num)
+        delta_a = self.palette_delta_a * torch.tanh(self._base_color.reshape(-1, self.vertex_num, 3))
+        delta_r = self.palette_delta_r * torch.tanh(self._roughness.reshape(-1, self.vertex_num))
+
+        final_albedo = (main_albedo_v + delta_a).clamp(0.0, 1.0)
+        final_roughness = (main_roughness_v + delta_r).clamp(self.palette_r_min, 1.0)
+        final_albedo = (final_albedo * self.base_color_scale[None, None, :]).clamp(0.0, 1.0)
+        final_albedo = final_albedo.reshape(-1, self.vertex_num * 3)
+        final_roughness = final_roughness.reshape(-1, self.vertex_num)
+
+        if return_weights:
+            return final_albedo, final_roughness, weights
+        return final_albedo, final_roughness
+
+    def get_palette_regularization_loss(self):
+        zero = torch.zeros((), dtype=self.get_xyz.dtype, device=self.get_xyz.device)
+        if not (self.use_pbr and self.use_palette_material):
+            return {"loss_palette_res": zero, "loss_palette_usage": zero, "loss_palette_dead": zero}
+
+        _, _, weights = self.compose_palette_material(return_weights=True)
+        delta_a = self.palette_delta_a * torch.tanh(self._base_color.reshape(-1, self.vertex_num, 3))
+        delta_r = self.palette_delta_r * torch.tanh(self._roughness.reshape(-1, self.vertex_num))
+        loss_res = delta_a.pow(2).sum(dim=-1).mean() + delta_r.pow(2).mean()
+        w_bar = weights.mean(dim=0)
+        loss_usage = torch.sum(w_bar * torch.log(w_bar + 1e-8))
+        eps_dead = 0.5 / float(self.palette_K)
+        loss_dead = torch.clamp(eps_dead - w_bar, min=0.0).pow(2).sum()
+        return {
+            "loss_palette_res": loss_res,
+            "loss_palette_usage": loss_usage,
+            "loss_palette_dead": loss_dead,
+        }
+
+    def update_palette_temperature(self, iteration, max_iterations):
+        if not (self.use_pbr and self.use_palette_material):
+            return
+        t = min(max(iteration / float(max_iterations), 0.0), 1.0)
+        self.palette_tau = self.palette_tau_start * (1.0 - t) + self.palette_tau_end * t
+
+    def _restore_palette_state(self, palette_state):
+        self.use_palette_material = bool(palette_state.get("use_palette_material", False)) and self.use_pbr
+        self.palette_K = int(palette_state.get("palette_K", self.palette_K))
+        self.palette_a_min = float(palette_state.get("palette_a_min", self.palette_a_min))
+        self.palette_a_max = float(palette_state.get("palette_a_max", self.palette_a_max))
+        self.palette_r_min = float(palette_state.get("palette_r_min", self.palette_r_min))
+        self.palette_r_max = float(palette_state.get("palette_r_max", self.palette_r_max))
+        self.palette_delta_a = float(palette_state.get("palette_delta_a", self.palette_delta_a))
+        self.palette_delta_r = float(palette_state.get("palette_delta_r", self.palette_delta_r))
+        self.palette_tau = float(palette_state.get("palette_tau", self.palette_tau))
+        self.palette_tau_start = float(palette_state.get("palette_tau_start", self.palette_tau_start))
+        self.palette_tau_end = float(palette_state.get("palette_tau_end", self.palette_tau_end))
+        self.palette_pe_freqs = int(palette_state.get("palette_pe_freqs", self.palette_pe_freqs))
+        self._palette_xyz_min = palette_state.get("palette_xyz_min", None)
+        self._palette_xyz_max = palette_state.get("palette_xyz_max", None)
+
+        palette_albedo_raw = palette_state.get("palette_albedo_raw", None)
+        palette_roughness_raw = palette_state.get("palette_roughness_raw", None)
+        if palette_albedo_raw is not None:
+            self._palette_albedo_raw = nn.Parameter(palette_albedo_raw.detach().requires_grad_(True))
+        if palette_roughness_raw is not None:
+            self._palette_roughness_raw = nn.Parameter(palette_roughness_raw.detach().requires_grad_(True))
+
+        input_dim = 3 + 2 * 3 * self.palette_pe_freqs
+        self.palette_mlp = self._build_palette_mlp(input_dim)
+        palette_mlp_state = palette_state.get("palette_mlp_state", None)
+        if palette_mlp_state is not None:
+            self.palette_mlp.load_state_dict(palette_mlp_state)
+
+    def _is_per_point_param_group(self, name):
+        return name in {
+            "xyz",
+            "normal",
+            "rotation",
+            "scaling",
+            "opacity",
+            "f_dc",
+            "f_rest",
+            "base_color",
+            "roughness",
+            "incidents_dc",
+            "incidents_rest",
+            "visibility_dc",
+            "visibility_rest",
+        }
 
 
     @torch.no_grad()
@@ -282,6 +507,26 @@ class GaussianModel:
                 self._radiances,
                 self._radiance_ratio,
             ])
+            if self.use_palette_material:
+                captured_list.append({
+                    "use_palette_material": self.use_palette_material,
+                    "palette_K": self.palette_K,
+                    "palette_a_min": self.palette_a_min,
+                    "palette_a_max": self.palette_a_max,
+                    "palette_r_min": self.palette_r_min,
+                    "palette_r_max": self.palette_r_max,
+                    "palette_delta_a": self.palette_delta_a,
+                    "palette_delta_r": self.palette_delta_r,
+                    "palette_tau": self.palette_tau,
+                    "palette_tau_start": self.palette_tau_start,
+                    "palette_tau_end": self.palette_tau_end,
+                    "palette_pe_freqs": self.palette_pe_freqs,
+                    "palette_xyz_min": self._palette_xyz_min,
+                    "palette_xyz_max": self._palette_xyz_max,
+                    "palette_albedo_raw": self._palette_albedo_raw,
+                    "palette_roughness_raw": self._palette_roughness_raw,
+                    "palette_mlp_state": self.palette_mlp.state_dict() if self.palette_mlp is not None else None,
+                })
 
         return captured_list
 
@@ -302,6 +547,7 @@ class GaussianModel:
          denom,
          opt_dict,
          self.spatial_lr_scale) = model_args[:15]
+        palette_state = None
         if len(model_args) > 15 and self.use_pbr:
             (self._base_color,
              self._roughness,
@@ -310,10 +556,15 @@ class GaussianModel:
              self._visibility_dc,
              self._visibility_rest,
              ) = model_args[15:21]
-            if (len(model_args) > 21):
+            if len(model_args) > 21:
                 self._radiances = model_args[21]
-                if len(model_args) > 22:
+                if len(model_args) > 22 and not isinstance(model_args[22], dict):
                     self._radiance_ratio = model_args[22]
+            if len(model_args) > 22 and isinstance(model_args[-1], dict) and "palette_mlp_state" in model_args[-1]:
+                palette_state = model_args[-1]
+
+        if palette_state is not None:
+            self._restore_palette_state(palette_state)
 
         if is_training:
             self.training_setup(training_args)
@@ -397,14 +648,20 @@ class GaussianModel:
 
     @property
     def get_base_color(self):
-        return self.base_color_activation(self._base_color) * self.base_color_scale[None, :].repeat_interleave(repeats=self.vertex_num,dim=1)
+        if self.use_pbr and self.use_palette_material:
+            base_color, _ = self.compose_palette_material(return_weights=False)
+            return base_color
+        return self.base_color_activation(self._base_color) * self.base_color_scale[None, :].repeat_interleave(repeats=self.vertex_num, dim=1)
     
     @property
     def get_albedo(self):
-        return self.base_color_activation(self._base_color) * self.base_color_scale[None, :].repeat_interleave(repeats=self.vertex_num,dim=1)
+        return self.get_base_color
     
     @property
     def get_roughness(self):
+        if self.use_pbr and self.use_palette_material:
+            _, roughness = self.compose_palette_material(return_weights=False)
+            return torch.nan_to_num(roughness, nan=1e-8)
         return torch.nan_to_num(self.roughness_activation(self._roughness), nan=1e-8)
     
     @property
@@ -713,6 +970,7 @@ class GaussianModel:
         self.denom = denom
 
         if self.use_pbr:
+            palette_state = None
             if len(model_args) > 15 and (not from_gs):
                 (self._base_color,
                  self._roughness,
@@ -723,8 +981,10 @@ class GaussianModel:
                  ) = model_args[15:21]
                 if len(model_args) > 21:
                     self._radiances = model_args[21]
-                    if len(model_args) > 22:
+                    if len(model_args) > 22 and not isinstance(model_args[22], dict):
                         self._radiance_ratio = model_args[22]
+                if len(model_args) > 22 and isinstance(model_args[-1], dict) and "palette_mlp_state" in model_args[-1]:
+                    palette_state = model_args[-1]
             else:
                 self._base_color = nn.Parameter(torch.zeros_like(self._xyz).repeat(1, self.vertex_num).requires_grad_(True))
                 self._normal = nn.Parameter(torch.zeros_like(self._xyz).repeat(1, self.vertex_num).requires_grad_(True))
@@ -744,6 +1004,8 @@ class GaussianModel:
                 self._visibility_rest = nn.Parameter(
                     visibility[:, :, 1:].transpose(1, 2).contiguous().requires_grad_(True))
                 # self.update_radiace()
+            if palette_state is not None:
+                self._restore_palette_state(palette_state)
         if restore_optimizer:
             # TODO automatically match the opt_dict
             try:
@@ -802,6 +1064,22 @@ class GaussianModel:
         self.normal_gradient_accum = torch.zeros((self.get_xyz.shape[0], 1), device="cuda")
         self.denom = torch.zeros((self.get_xyz.shape[0], 1), device="cuda")
 
+        if self.use_pbr:
+            self.use_palette_material = bool(getattr(training_args, "use_palette_material", self.use_palette_material)) and self.use_pbr
+            self.palette_K = int(getattr(training_args, "palette_K", self.palette_K))
+            self.palette_a_min = float(getattr(training_args, "palette_a_min", self.palette_a_min))
+            self.palette_a_max = float(getattr(training_args, "palette_a_max", self.palette_a_max))
+            self.palette_r_min = float(getattr(training_args, "palette_r_min", self.palette_r_min))
+            self.palette_r_max = float(getattr(training_args, "palette_r_max", self.palette_r_max))
+            self.palette_delta_a = float(getattr(training_args, "palette_delta_a", self.palette_delta_a))
+            self.palette_delta_r = float(getattr(training_args, "palette_delta_r", self.palette_delta_r))
+            self.palette_tau_start = float(getattr(training_args, "palette_tau_start", self.palette_tau_start))
+            self.palette_tau_end = float(getattr(training_args, "palette_tau_end", self.palette_tau_end))
+            self.palette_tau = self.palette_tau_start
+
+            if self.use_palette_material and (self._palette_albedo_raw is None or self._palette_roughness_raw is None or self.palette_mlp is None):
+                self.init_palette_material_from_stage1(training_args)
+
         l = [
             {'params': [self._xyz], 'lr': training_args.position_lr_init * self.spatial_lr_scale, "name": "xyz"},
             {'params': [self._normal], 'lr': training_args.normal_lr, "name": "normal"},
@@ -818,14 +1096,26 @@ class GaussianModel:
             if training_args.visibility_rest_lr < 0:
                 training_args.visibility_rest_lr = training_args.visibility_lr / 20.0
 
+            material_residual_lr = getattr(training_args, "material_residual_lr", training_args.base_color_lr)
+            palette_lr = getattr(training_args, "palette_lr", 1e-3)
+            palette_mlp_lr = getattr(training_args, "palette_mlp_lr", 1e-3)
+
             l.extend([
-                {'params': [self._base_color], 'lr': training_args.base_color_lr, "name": "base_color"},
-                {'params': [self._roughness], 'lr': training_args.roughness_lr, "name": "roughness"},
+                {'params': [self._base_color], 'lr': material_residual_lr if self.use_palette_material else training_args.base_color_lr, "name": "base_color"},
+                {'params': [self._roughness], 'lr': material_residual_lr if self.use_palette_material else training_args.roughness_lr, "name": "roughness"},
                 {'params': [self._incidents_dc], 'lr': training_args.light_lr, "name": "incidents_dc"},
                 {'params': [self._incidents_rest], 'lr': training_args.light_rest_lr, "name": "incidents_rest"},
                 {'params': [self._visibility_dc], 'lr': training_args.visibility_lr, "name": "visibility_dc"},
                 {'params': [self._visibility_rest], 'lr': training_args.visibility_rest_lr, "name": "visibility_rest"},
             ])
+
+            if self.use_palette_material:
+                l.extend([
+                    {'params': [self._palette_albedo_raw], 'lr': palette_lr, "name": "palette_albedo"},
+                    {'params': [self._palette_roughness_raw], 'lr': palette_lr, "name": "palette_roughness"},
+                ])
+                for name, param in self.palette_mlp.named_parameters():
+                    l.append({'params': [param], 'lr': palette_mlp_lr, "name": f"palette_mlp_{name}"})
 
         self.optimizer = torch.optim.Adam(l, lr=1e-4, eps=1e-15)
         self.xyz_scheduler_args = get_expon_lr_func(lr_init=training_args.position_lr_init * self.spatial_lr_scale,
@@ -854,6 +1144,15 @@ class GaussianModel:
                 self._base_color.grad[torch.where(torch.isnan(self._base_color.grad))] = 0.0
             if self._normal.grad is not None:
                 self._normal.grad[torch.where(torch.isnan(self._normal.grad))] = 0.0
+            if self.use_palette_material:
+                if self._palette_albedo_raw is not None and self._palette_albedo_raw.grad is not None:
+                    self._palette_albedo_raw.grad[torch.isnan(self._palette_albedo_raw.grad)] = 0.0
+                if self._palette_roughness_raw is not None and self._palette_roughness_raw.grad is not None:
+                    self._palette_roughness_raw.grad[torch.isnan(self._palette_roughness_raw.grad)] = 0.0
+                if self.palette_mlp is not None:
+                    for p in self.palette_mlp.parameters():
+                        if p.grad is not None:
+                            p.grad[torch.isnan(p.grad)] = 0.0
 
     def replace_nan_to_zero(self):
         self._xyz = torch.nan_to_num(self._xyz, nan=0.0)
@@ -926,10 +1225,12 @@ class GaussianModel:
         rotation = self._rotation.detach().cpu().numpy()
         attributes_list = [xyz, normal, sh_dc, sh_rest, opacities, scale, rotation]
         if self.use_pbr:
+            base_color_to_save = self.get_base_color.detach().cpu().numpy() if self.use_palette_material else self._base_color.detach().cpu().numpy()
+            roughness_to_save = self.get_roughness.detach().cpu().numpy() if self.use_palette_material else self._roughness.detach().cpu().numpy()
             attributes_list.extend([
-                self._base_color.detach().cpu().numpy(),
+                base_color_to_save,
                 self._normal.detach().cpu().numpy(),
-                self._roughness.detach().cpu().numpy(),
+                roughness_to_save,
                 self._incidents_dc.detach().transpose(1, 2).flatten(start_dim=1).contiguous().cpu().numpy(),
                 self._incidents_rest.detach().transpose(1, 2).flatten(start_dim=1).contiguous().cpu().numpy(),
                 self._visibility_dc.detach().transpose(1, 2).flatten(start_dim=1).contiguous().cpu().numpy(),
@@ -1081,6 +1382,9 @@ class GaussianModel:
     def _prune_optimizer(self, mask):
         optimizable_tensors = {}
         for group in self.optimizer.param_groups:
+            name = group["name"]
+            if not self._is_per_point_param_group(name):
+                continue
             stored_state = self.optimizer.state.get(group['params'][0], None)
             if stored_state is not None:
                 stored_state["exp_avg"] = stored_state["exp_avg"][mask]
@@ -1090,10 +1394,10 @@ class GaussianModel:
                 group["params"][0] = nn.Parameter((group["params"][0][mask].requires_grad_(True)))
                 self.optimizer.state[group['params'][0]] = stored_state
 
-                optimizable_tensors[group["name"]] = group["params"][0]
+                optimizable_tensors[name] = group["params"][0]
             else:
                 group["params"][0] = nn.Parameter(group["params"][0][mask].requires_grad_(True))
-                optimizable_tensors[group["name"]] = group["params"][0]
+                optimizable_tensors[name] = group["params"][0]
         return optimizable_tensors
 
     def prune_points(self, mask):
@@ -1126,7 +1430,10 @@ class GaussianModel:
         optimizable_tensors = {}
         for group in self.optimizer.param_groups:
             assert len(group["params"]) == 1
-            extension_tensor = tensors_dict[group["name"]]
+            name = group["name"]
+            if name not in tensors_dict:
+                continue
+            extension_tensor = tensors_dict[name]
             stored_state = self.optimizer.state.get(group['params'][0], None)
             if stored_state is not None:
                 stored_state["exp_avg"] = torch.cat(
@@ -1140,11 +1447,11 @@ class GaussianModel:
                     torch.cat((group["params"][0], extension_tensor), dim=0).requires_grad_(True))
                 self.optimizer.state[group['params'][0]] = stored_state
 
-                optimizable_tensors[group["name"]] = group["params"][0]
+                optimizable_tensors[name] = group["params"][0]
             else:
                 group["params"][0] = nn.Parameter(
                     torch.cat((group["params"][0], extension_tensor), dim=0).requires_grad_(True))
-                optimizable_tensors[group["name"]] = group["params"][0]
+                optimizable_tensors[name] = group["params"][0]
 
         return optimizable_tensors
 

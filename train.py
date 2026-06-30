@@ -219,7 +219,10 @@ def training(dataset: ModelParams, opt: OptimizationParams, pipe: PipelineParams
             if iteration % 1000 == 0 and is_pbr:
                 opt.lambda_local_lights_smooth = 0.0
                 # opt.lambda_light_smooth /= 4.0
-                gaussians.optimizer.param_groups[13]['lr'] = 0.0
+                for group in gaussians.optimizer.param_groups:
+                    if group.get('name') == 'radiance_ratio':
+                        group['lr'] = 0.0
+                        break
                 # direct_env_light.optimizer.param_groups[0]['lr'] /= 4.0
             # if iteration == 30001 and is_pbr:
             #     direct_env_light.optimizer.param_groups[0]['lr'] = 0.0

@@ -102,6 +102,14 @@ def render_view(viewpoint_camera: Camera, pc: GaussianModel, pipe, bg_color: tor
     base_color = pc.get_base_color
     roughness = pc.get_roughness
     normal = pc.get_shading_normal
+
+    if getattr(pc, "use_palette_material", False) and getattr(pipe, "debug", False):
+        assert base_color.ndim == 2, f"base_color should be [N, 12], got {base_color.shape}"
+        assert roughness.ndim == 2, f"roughness should be [N, 4], got {roughness.shape}"
+        assert base_color.shape[0] == pc.get_xyz.shape[0],             f"base_color N mismatch: {base_color.shape[0]} vs {pc.get_xyz.shape[0]}"
+        assert roughness.shape[0] == pc.get_xyz.shape[0],             f"roughness N mismatch: {roughness.shape[0]} vs {pc.get_xyz.shape[0]}"
+        assert base_color.shape[1] == pc.vertex_num * 3,             f"base_color channel mismatch: expected {pc.vertex_num * 3}, got {base_color.shape[1]}"
+        assert roughness.shape[1] == pc.vertex_num,             f"roughness channel mismatch: expected {pc.vertex_num}, got {roughness.shape[1]}"
     # incidents = pc.get_incidents  # incident shs
     incidents = pc.get_radiances  # incident radiance
     # incidents = pc.calc_radiance
@@ -262,6 +270,10 @@ def render_view(viewpoint_camera: Camera, pc: GaussianModel, pipe, bg_color: tor
     return results
 
 
+def _is_valid_loss_tensor(x):
+    return x is not None and torch.is_tensor(x) and torch.isfinite(x).all()
+
+
 def calculate_loss(viewpoint_camera, pc, results, opt, direct_light_env_light, iteration):
     tb_dict = {
         "num_points": pc.get_xyz.shape[0],
@@ -398,6 +410,49 @@ def calculate_loss(viewpoint_camera, pc, results, opt, direct_light_env_light, i
         tb_dict["loss_normal_smooth"] = loss_normal_smooth.item()
         loss = loss + opt.lambda_normal_smooth * loss_normal_smooth
 
+    # Palette-Guided Material V1 regularization.
+    # The actual material composition is implemented inside GaussianModel.
+    # Here we only add the regularization losses returned by the model.
+    if getattr(pc, "use_palette_material", False):
+        if hasattr(pc, "get_palette_regularization_loss"):
+            palette_losses = pc.get_palette_regularization_loss()
+
+            loss_palette_res = palette_losses.get("loss_palette_res", None)
+            loss_palette_usage = palette_losses.get("loss_palette_usage", None)
+            loss_palette_dead = palette_losses.get("loss_palette_dead", None)
+
+            lambda_palette_res = float(getattr(opt, "lambda_palette_res", 0.01))
+            lambda_palette_usage = float(getattr(opt, "lambda_palette_usage", 0.001))
+            lambda_palette_dead = float(getattr(opt, "lambda_palette_dead", 0.001))
+
+            if _is_valid_loss_tensor(loss_palette_res):
+                loss = loss + lambda_palette_res * loss_palette_res
+                tb_dict["loss_palette_res"] = loss_palette_res.detach().item()
+                tb_dict["lambda_palette_res"] = lambda_palette_res
+            else:
+                tb_dict["loss_palette_res_invalid"] = 1
+
+            if _is_valid_loss_tensor(loss_palette_usage):
+                loss = loss + lambda_palette_usage * loss_palette_usage
+                tb_dict["loss_palette_usage"] = loss_palette_usage.detach().item()
+                tb_dict["lambda_palette_usage"] = lambda_palette_usage
+            else:
+                tb_dict["loss_palette_usage_invalid"] = 1
+
+            if _is_valid_loss_tensor(loss_palette_dead):
+                loss = loss + lambda_palette_dead * loss_palette_dead
+                tb_dict["loss_palette_dead"] = loss_palette_dead.detach().item()
+                tb_dict["lambda_palette_dead"] = lambda_palette_dead
+            else:
+                tb_dict["loss_palette_dead_invalid"] = 1
+
+            if hasattr(pc, "palette_tau"):
+                tb_dict["palette_tau"] = float(pc.palette_tau)
+            if hasattr(pc, "palette_K"):
+                tb_dict["palette_K"] = int(pc.palette_K)
+        else:
+            tb_dict["palette_loss_missing"] = 1
+
     tb_dict["loss"] = loss.item()
 
     return loss, tb_dict
@@ -410,9 +465,18 @@ def render_svgss(viewpoint_camera: Camera, pc: GaussianModel, pipe, bg_color: to
     Render the scene.
     Background tensor (bg_color) must be on GPU!
     """
+    iteration = kwargs.get("iteration", 0)
+
+    # Palette temperature annealing should happen before material is queried in render_view().
+    if is_training and getattr(pc, "use_palette_material", False):
+        max_iterations = getattr(opt, "iterations", None)
+        if max_iterations is None:
+            max_iterations = getattr(opt, "position_lr_max_steps", None)
+        if max_iterations is not None and hasattr(pc, "update_palette_temperature"):
+            pc.update_palette_temperature(iteration, max_iterations)
+
     results = render_view(viewpoint_camera, pc, pipe, bg_color,
                           scaling_modifier, override_color, is_training, dict_params)
-    iteration = kwargs.get("iteration", 0)
     if is_training:
         loss, tb_dict = calculate_loss(viewpoint_camera, pc, results, opt, direct_light_env_light=dict_params['env_light'], iteration=iteration)
         results["tb_dict"] = tb_dict

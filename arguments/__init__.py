@@ -137,6 +137,28 @@ class OptimizationParams(ParamGroup):
         self.lambda_visibility = 0.0
         self.lambda_env_smooth = 0.0
 
+        self.use_palette_material = False
+        self.palette_K = 8
+        self.palette_a_min = 0.03
+        self.palette_a_max = 0.97
+        self.palette_r_min = 0.04
+        self.palette_r_max = 1.0
+        self.palette_delta_a = 0.10
+        self.palette_delta_r = 0.08
+        self.palette_tau_start = 1.0
+        self.palette_tau_end = 0.1
+        self.palette_pe_freqs = 4
+        self.palette_mlp_hidden_dim = 64
+        self.palette_mlp_layers = 2
+        self.palette_kmeans_iters = 20
+        self.palette_debug = False
+        self.lambda_palette_res = 0.01
+        self.lambda_palette_usage = 0.001
+        self.lambda_palette_dead = 0.001
+        self.palette_lr = 1e-3
+        self.palette_mlp_lr = 1e-3
+        self.material_residual_lr = 1e-3
+
         self.lambda_local_lights_smooth = 1
 
         super().__init__(parser, "Optimization Parameters")
